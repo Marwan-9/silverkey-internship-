@@ -1,0 +1,93 @@
+﻿@page "/Feed"
+@model FeedModel
+@{
+    ViewData["Title"] = "Feed Page";
+
+}
+
+<style>
+    .navbar 
+    {
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid black;
+        font-size: 45px;
+        font-weight: 700;
+    }
+    .container 
+    {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        margin: 0 auto;
+        color: black;
+    }
+
+    .date 
+    {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 20px 0;
+    }
+
+    .title
+    {
+        font-size: 26px;
+        font-weight: 700;
+        text-decoration: none;
+        color: black;
+    }
+
+    .title:hover 
+    {
+        text-decoration: underline;
+        color: black;
+    }
+
+    .desc 
+    {
+        font-size: 20px:
+    }
+
+    @@media only screen and (max-width: 600px) {
+        .container 
+        {
+            width: 95%;
+        }
+
+        .title 
+        {
+            font-size: 30px;
+        }
+
+        .desc 
+        {
+            font-size: 26px;
+        }
+    }
+
+</style>
+
+<div class="navbar"> XML Reader</div>
+<div class="container">
+    @{
+        //Saving the date of the most recent post
+        var currDate = Model.ItemsDetails[0].PublishedDate.Substring(5, 11);
+    }
+
+    <!-- Render the most recent date-->
+    <div class="date"> Date @currDate</div>
+    @foreach (var Item in Model.ItemsDetails)
+    {
+        // Check that the date is not rendered before
+        if (Item.PublishedDate.Substring(5, 11) != currDate)
+        {
+            <div class="date"> Date @Item.PublishedDate</div>
+            currDate = Item.PublishedDate.Substring(5, 11);
+        }
+
+        // Rendering the title and the body
+        <a href=@Item.Link class="title"> @Item.Title </a>
+        <div class="desc"> @Html.Raw(@Item.Description)</div>
+    }
+</div>
