@@ -19,7 +19,7 @@
       color: #fff;
       text-align: center;
       padding: 15px;
-      margin-top:125px;
+      margin-top:25px;
     }
     
     .container {
@@ -28,6 +28,8 @@
       justify-content: center;
       align-items: center;
       height: 50vh;
+      width:60%;
+      flex-wrap:wrap;
     }
     
     .rectangle {
@@ -67,6 +69,19 @@
     .rectangle:hover {
       background-color: #2c3e50;
     }
+    
+     @@media only screen and (max-width: 600px) {
+        .container {
+            width: 95%;
+        }
+
+        .rectangle {
+            padding: 0px 10px;
+            width: 250px;
+            margin:0px;
+        }
+     }
+
   </style>
 
 @if (User.Identity.IsAuthenticated == true)
@@ -78,10 +93,10 @@
             <h1>Admin Portal</h1>
             </div>
             <div class="container">
-                <a class="rectangle view-entry" href="/Dataview">View Entries</a>
+                <a class="rectangle view-entry" href="/Dataview">View Data</a>
                 <a class="rectangle edit-entry" href="/Dataview">Edit Entry</a>
                 <a class="rectangle add-entry" href="/InsertItem">Add Entry</a>
-                <form method="post" asp-page-handler="LogOut">
+                <form method="post" asp-page-handler="LogOut" style="display:contents">
                     <button type="submit" class="rectangle logout">Log Out</button>
                 </form>
             </div>
@@ -95,8 +110,8 @@
         <h1>User Portal</h1>
         </div>
         <div class="container">
-        <div class="rectangle add-entry">View Entries</div>
-        <form method="post" asp-page-handler="LogOut">
+        <a class="rectangle view-entry" href="/Dataview">View Entries</a>
+                <form method="post" asp-page-handler="LogOut" style="display:contents">
             <button type="submit" class="rectangle logout">Log Out</button>
         </form>
         </div>
