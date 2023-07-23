@@ -1,7 +1,7 @@
 # Silverkey Internship
 Showcasing my .NET Core skills through a collection of assignments completed during my software internship at Silverkey.
 
-#### Assignments 
+### Assignments 
 1.  Setup development environment.
 2.  Web API to upload any picture then preview it (ASP.NET Core Minimal API).
 3.  Web App to read and render RSS feed then preview them neatly.
