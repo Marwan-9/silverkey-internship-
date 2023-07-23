@@ -12,4 +12,4 @@ Showcasing my .NET Core skills through a collection of assignments completed dur
 8.  Extending assignment #7 code base to utilizing HTMX in receiving data from the API. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/08.%20CurrentTimeHTMX)
 9.  Extending assignment #5 code base to use AJAX to prevent pages refresh with each request. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/09.%20FavouriteFeedAJAX)
 10. Web App to add and preview data from contact database (EdgeDb 3.0).[ Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/10.%20ContactDatabase)
-11. Extending assignment #10 to build admin and user portals with different roles and permissions.
+11. Extending assignment #10 to build admin and user portals with different roles and permissions. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/11.%20ContactDatabaseEnhanced)
