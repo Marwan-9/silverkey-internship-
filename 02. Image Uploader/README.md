@@ -1,4 +1,6 @@
 # Assignment 2 
+### Overview
+Web API to upload an image then preview it (ASP.NET Core Minimal API)
 ### 1.1 Cross Device Compatibility
 
 <p align=center>
