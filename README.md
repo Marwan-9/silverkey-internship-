@@ -3,7 +3,7 @@ Showcasing my .NET Core skills through a collection of assignments completed dur
 
 ### Assignments 
 1.  Setup development environment. 
-2.  Web API to upload JPG images then preview it (ASP.NET Core Minimal API). [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/02.%20Image%20Uploader)
+2.  Web API to upload an image then preview it (ASP.NET Core Minimal API). [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/02.%20Image%20Uploader)
 3.  Web App to read and render RSS feed then preview them neatly. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/03.%20XML%20Parser) 
 4.  Extending assignment #3 code to read feeds from a remote OPML file. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/04.%20OPML%20Reader)
 5.  Extending assignment #4 code to allow user to favourite an RSS feed. Keep the information in a cookie. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/05.%20FavouriteFeed)
