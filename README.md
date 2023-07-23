@@ -6,7 +6,7 @@ Showcasing my .NET Core skills through a collection of assignments completed dur
 2.  Web API to upload any picture then preview it (ASP.NET Core Minimal API). [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/02.%20Image%20Uploader)
 3.  Web App to read and render RSS feed then preview them neatly. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/03.%20XML%20Parser) 
 4.  Extending assignment #3 code to read feeds from a remote OPML file. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/04.%20OPML%20Reader)
-5.  Extending assignment #4 code to allow user to favourite an RSS feed. Keep the information in a cookie.[Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/05.%20FavouriteFeed)
+5.  Extending assignment #4 code to allow user to favourite an RSS feed. Keep the information in a cookie. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/05.%20FavouriteFeed)
 6.  Web App implementing login with cookie based authentication. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/06.%20LoginWithCookies)
 7.  Web API to show current time (ASP.NET Core Minimal API). [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/07.%20CurrentTimeService)
 8.  Extending assignment #7 code base to utilizing HTMX in receiving data from the API. [Show Code](https://github.com/Marwan-9/silverkey-internship/tree/main/08.%20CurrentTimeHTMX)
