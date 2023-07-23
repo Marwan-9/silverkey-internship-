@@ -32,17 +32,3 @@ Extending assignment #3 code to read feeds from a remote OPML file.
 <p align=center>
 <img src= "https://github.com/silverkeytech/summer-2023/assets/76080440/a18a6a1f-745c-49fb-9e6d-50817fcc454d" width="650"/>
 </p>
-
-### 3 Technical
-### 3.1 Development Environment
-OS: Windows 11 
-Editor: VS Commuinty 22
-
-### 3.2 Technologies Used
-C#, .NET Core
-
-### 3.3 Naming Convention
-I tried to follow the naming convention, if you see any violation, kindly give me a comment.
-
-### 4. Comments
-Your comments are appreciated, please share your opinions.
