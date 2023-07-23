@@ -1,7 +1,4 @@
 # Assignment 2 
-### Overview
-
-[GitHub Repo Link](https://github.com/Marwan-9/img-uploader-dotnet-core)
 ### 1.1 Cross Device Compatibility
 
 <p align=center>
