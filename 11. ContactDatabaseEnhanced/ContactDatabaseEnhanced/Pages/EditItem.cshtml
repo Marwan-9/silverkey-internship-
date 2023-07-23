@@ -1,0 +1,124 @@
+﻿@page
+@model ContactDatabaseEnhanced.Pages.EditItemModel
+@{
+
+
+}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 60%;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label,
+    .form-group input,
+    .form-group textarea {
+        display: block;
+        width: 100%;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 8px; /* Reduced the input fields' height */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-group input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    /* Display radio buttons inline */
+    .form-group input[type="radio"] {
+        display: inline-block;
+        margin-right: 5px;
+    }
+</style>
+@if (User.Identity.IsAuthenticated == true && User.IsInRole("Admin") == true )
+{
+
+<div class="container">
+    <h1>Edit User Information</h1>
+        <form method="post" asp-page-handler="Update" asp-route-email="@Model.ContactToEdit.Email">
+        <div class="form-group">
+            <label for="username">First Name:</label>
+                <input type="text" id="username" name="NewContact.FirstName" value="@Model.ContactToEdit.FirstName">
+        </div>
+        <div class="form-group">
+            <label for="username">Last Name:</label>
+            <input type="text" id="username" name="NewContact.LastName" value="@Model.ContactToEdit.LastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+                <input type="text" id="email" name="NewContact.Email" value="@Model.ContactToEdit.Email">
+        </div>
+        <div class="form-group">
+            <label for="title">Title:</label>
+                <select id="title" name="NewContact.Title" value="@Model.ContactToEdit.Title">
+                <option value="Mr.">Mr.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Mrs.">Mrs.</option>
+                <option value="Dr.">Dr.</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+                <textarea id="description" name="NewContact.Description">@Model.ContactToEdit.Description</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="NewContact.BirthDate" value="@Model.ContactToEdit.BirthDate">
+        </div>
+
+        <label>Marriage Status:</label>
+        <div class="form-group">
+                <select name="NewContact.MaritalStatus" value="@Model.ContactToEdit.MaritalStatus">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Update">
+        </div>
+        <div asp-validation-summary="ModelOnly" style="width:100%; color:red;"></div>
+    </form>
+</div>
+}
+
+else 
+{
+   Response.Redirect("/Index");
+}

@@ -1,0 +1,110 @@
+﻿@page
+@model ContactDatabaseEnhanced.Pages.HomepageModel
+@{
+}
+    
+ <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    a{
+      text-decoration:none;
+    }
+    
+    .header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top:125px;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+    }
+    
+    .rectangle {
+      width: 200px;
+      height: 100px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.2s ease;
+    }
+    
+    .edit-entry {
+      background-color: #3498db;
+      color: #ffffff;
+    }
+
+    .add-entry {
+      background-color: #04aa6d;
+      color: #ffffff;
+    }
+
+    .view-entry {
+      background-color: #db6434;
+      color: #ffffff;
+    }
+    
+    .logout {
+    background-color: #6033ae;
+    color: #ffffff;
+    }
+
+    .rectangle:hover {
+      background-color: #2c3e50;
+    }
+  </style>
+
+@if (User.Identity.IsAuthenticated == true)
+{
+    @if (User.IsInRole("Admin") == true )
+    {
+        <div>
+            <div class="header">
+            <h1>Admin Portal</h1>
+            </div>
+            <div class="container">
+                <a class="rectangle view-entry" href="/Dataview">View Entries</a>
+                <a class="rectangle edit-entry" href="/Dataview">Edit Entry</a>
+                <a class="rectangle add-entry" href="/InsertItem">Add Entry</a>
+                <form method="post" asp-page-handler="LogOut">
+                    <button type="submit" class="rectangle logout">Log Out</button>
+                </form>
+            </div>
+ 
+        </div>
+    }
+    @if (User.IsInRole("User") == true )
+    {
+     <div>
+        <div class="header">
+        <h1>User Portal</h1>
+        </div>
+        <div class="container">
+        <div class="rectangle add-entry">View Entries</div>
+        <form method="post" asp-page-handler="LogOut">
+            <button type="submit" class="rectangle logout">Log Out</button>
+        </form>
+        </div>
+    </div>
+    }
+}
+
+else{
+        Response.Redirect("Index");
+}
+

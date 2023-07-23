@@ -1,0 +1,104 @@
+﻿@page
+@model ContactDatabase.Pages.DataviewModel
+@{
+}
+
+<style>
+    /* Fancy styles for the search bar */
+    .search-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+
+    .search-label {
+        font-weight: bold;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+
+    .search-input {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        width: 60vw;
+    }
+
+    table {
+        width: 60%;
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+    }
+
+    tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div class="search-container">
+    <label class="search-label" for="searchBar">Enter to Search:</label>
+    <input type="text" id="searchBar" class="search-input" placeholder="Enter first name to filter">
+</div>
+
+<table id="contactsTable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date of Birth</th>
+            <th>Marriage Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model.ContactsList)
+        {
+            <tr>
+                <td>@contact.FirstName</td>
+                <td>@contact.LastName</td>
+                <td>@contact.Email</td>
+                <td>@contact.Title</td>
+                <td>@contact.Description</td>
+                <td>@contact.BirthDate</td>
+                <td>@(contact.MaritalStatus)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Your HTML table remains unchanged -->
+
+<script>
+    document.getElementById("searchBar").addEventListener("keyup", function () {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchBar");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("contactsTable");
+        tr = table.querySelectorAll("tbody tr"); // Select all rows in the tbody element
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].querySelectorAll("td"); // Select all cells in the current row
+            txtValue = "";
+
+            // Concatenate the text content of all cells in the current row
+            td.forEach(function (cell) {
+                txtValue += cell.textContent || cell.innerText;
+            });
+
+            // Hide or show the row based on the search result
+            tr[i].style.display = (txtValue.toUpperCase().indexOf(filter) > -1) ? "" : "none";
+        }
+    });
+</script>
+
