@@ -1,0 +1,138 @@
+﻿@page
+@model FavouriteFeed.Pages.FavoritesModel
+@{
+    List<FeedItem> favList = (List<FeedItem>)ViewData["favList"];
+    int pageSize = (int)ViewData["PageSize"];
+    int totalPages = (int)ViewData["TotalPages"];
+}
+
+<style>
+    .navbar {
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid black;
+        font-size: 45px;
+        font-weight: 700;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 0 4px;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            .pagination a:hover {
+                background-color: #eee;
+            }
+
+        .pagination .active {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+            cursor: default;
+        }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        margin: 0 auto;
+        color: black;
+    }
+
+    .item {
+        margin: 20px 0px;
+        padding: 10px;
+        background-color: #F5F5F5;
+        border-radius: 15px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: 700;
+        color: black;
+    }
+
+    .button {
+        width: 130px;
+        height: fit-content;
+        font-size: 18px;
+        font-weight: 700;
+        border-radius: 12px;
+        background-color: #04aa6d;
+    }
+
+    .star {
+        background-color: yellow;
+        float: right;
+        border-width: 0px;
+        margin-right: 2%;
+        width: 10%;
+        border-radius: 10px;
+        font-weight: 700;
+    }
+
+    @@media only screen and (max-width: 600px) {
+        .container {
+            width: 95%;
+        }
+
+        .title {
+            font-size: 30px;
+        }
+
+        .pagination {
+            flex-wrap: wrap;
+        }
+
+            .pagination a {
+                margin: 4px;
+            }
+    }
+</style>
+<div class="navbar"> OPML Reader (Favorites)</div>
+
+<a class="link" asp-page="/Index">
+    <button class="button"> Back to Feed </button> 
+</a>
+
+<br />
+<br />
+
+@foreach (var Item in favList)
+{
+    if (Item.Title != "")
+    {
+        <div class="item">
+            <form method="post" asp-page="/Favorites" asp-route-feedLink="@Item.Link" asp-route-feedTitle="@Item.Title" asp-page-handler="StarItem">
+                <div class="title" name="title"> @Item.Title </div>
+                <a class="link" asp-page="/Feed" asp-route-message="@Item.Link" target="_blank"> <button class="button"> Click to Visit </button> </a>
+            </form>
+        </div>
+    }
+}
+
+<div>
+    Page @ViewData["PageNumber"] of @ViewData["TotalPages"]
+</div>
+
+<div class="pagination">
+    @for (int i = 1; i <= (int)ViewData["TotalPages"]; i++)
+    {
+        <a href="?pageNumber=@i" @(i == (int)ViewData["PageNumber"] ? "class=active" : "")>@i</a>
+    }
+</div>
+
+
+

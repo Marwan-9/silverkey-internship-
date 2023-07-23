@@ -1,0 +1,127 @@
+﻿@page "/"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    .navbar 
+    {
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid black;
+        font-size: 45px;
+        font-weight: 700;
+    }
+    .pagination 
+    {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination a 
+    {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 0 4px;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .pagination a:hover 
+    {
+        background-color: #eee;
+    }
+
+    .pagination .active 
+    {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+        cursor: default;
+    }
+    .container
+    {
+        display:flex;
+        flex-direction:column;
+        width:65%;
+        margin: 0 auto;
+        color:black;
+    }
+
+    .item
+    {
+        margin: 20px 0px;
+        padding:10px;
+        background-color: #F5F5F5;
+        border-radius:15px;
+    }
+
+    .title
+    {
+        font-size: 32px;
+        font-weight: 700;
+        color:black;
+    }
+    .button
+    {
+        width:130px;
+        height: fit-content;
+        font-size:18px;
+        font-weight:700;
+        border-radius:12px;
+        background-color: #04aa6d;
+    }
+
+   @@media only screen and (max-width: 600px) {
+      .container
+      {
+        width: 95%;
+      }
+
+      .title
+      {
+        font-size: 30px;
+      }
+
+      .pagination {
+        flex-wrap: wrap;
+      }
+
+      .pagination a {
+        margin: 4px;
+      }
+   }
+</style>
+
+@{
+    int pageNumber = (int)ViewData["PageNumber"];
+    int pageSize = (int)ViewData["PageSize"];
+    int totalItems = (int)ViewData["TotalItems"];
+    int totalPages = (int)ViewData["TotalPages"];
+    List<FeedItem> rssList = (List<FeedItem>)ViewData["RSSList"];
+}
+
+<div class="navbar" > OPML Reader</div>
+@foreach (var Item in rssList)
+{
+    <div class="item"> 
+    <div class="title"> @Item.Title </div>
+     <a class="link" asp-page="/Feed" asp-route-message="@Item.Link" target="_blank"> <button class="button"> Click to Visit </button> </a>
+    </div>
+}
+
+<div>
+    Page @pageNumber of @totalPages
+</div>
+
+<div class="pagination">
+    @for (int i = 1; i <= totalPages; i++)
+    {
+        <a href="?pageNumber=@i" @(i == pageNumber ? "class=active" : "")>@i</a>
+    }
+</div>

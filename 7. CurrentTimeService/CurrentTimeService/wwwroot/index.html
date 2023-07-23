@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h2 id="body"></h2>
+</body>
+</html>
+<script>
+    const getCurrentDate = async () => {
+        try {
+            const response = await fetch("/time");
+            const dateTimeString = await response.text();
+            document.getElementById("body").textContent = dateTimeString;
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    getCurrentDate();
+</script>
