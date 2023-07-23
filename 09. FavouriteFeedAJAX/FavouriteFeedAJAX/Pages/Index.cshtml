@@ -84,7 +84,7 @@
         float: right;
         border-width: 0px;
         margin-right: 2%;
-        width: 10%;
+        width: 100px;
         border-radius: 10px;
         font-weight: 700;
     }
@@ -102,9 +102,9 @@
             flex-wrap: wrap;
         }
 
-            .pagination a {
-                margin: 4px;
-            }
+        .pagination a {
+            margin: 4px;
+        }
     }
 </style>
 
@@ -127,7 +127,6 @@
             button.style.backgroundColor = "yellow";
 
         }
-
         // Submit the form via Ajax to handle the server-side update (using your existing submitForm function)
         submitForm(index, button);
     }
@@ -169,8 +168,6 @@
         <a class="link" asp-page="/Feed" asp-route-message="@Item.Link" target="_blank">
             <button class="button"> Click to Visit </button>
         </a>
-
-
             <input type="text" name="FeedLink" value="@Item.Link" hidden>
             <input type="text" name="FeedTitle" value="@Item.Title" hidden>
             @{
@@ -185,7 +182,6 @@
             }
         </form>
     </div>
-
     index++; // Increment the index after each loop iteration
 }
 
@@ -199,3 +195,4 @@
         <a href="?pageNumber=@i" @(i == (int)ViewData["PageNumber"] ? "class=active" : "")>@i</a>
     }
 </div>
+A
