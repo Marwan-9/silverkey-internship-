@@ -105,7 +105,20 @@
                 <option value="true">Yes</option>
             </select>
         </div>
-
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="NewContact.UserName" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Password:</label>
+            <input type="password" id="email" name="NewContact.Password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+                <select name="NewContact.UserRole" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
         <div class="form-group">
             <input type="submit" value="Login">
         </div>

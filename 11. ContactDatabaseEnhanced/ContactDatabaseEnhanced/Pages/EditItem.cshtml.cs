@@ -20,21 +20,37 @@ namespace ContactDatabaseEnhanced.Pages
             _client = client;
         }
 
-        public async Task<IActionResult> OnPostAsync(String email)
+        public async Task<IActionResult> OnPostAsync(string email)
         {
-            await _client.ExecuteAsync($@"
-                UPDATE Contact
-                FILTER Contact.email = '{email}'
-                SET {{
-                    first_name := '{NewContact.FirstName}',
-                    last_name := '{NewContact.LastName}',
-                    email := '{NewContact.Email}',
-                    title := '{NewContact.Title}',
-                    description := '{NewContact.Description}',
-                    birth_date := '{NewContact.BirthDate}',
-                    marital_status := <bool>{NewContact.MaritalStatus}
-                }}
-            ");
+
+            Console.WriteLine(NewContact.UserRole);
+            var query = @"
+            UPDATE Contact
+            FILTER Contact.email = <str>$email_toget
+            SET {
+                first_name := <str>$firstName,
+                last_name := <str>$lastName,
+                email := <str>$email,
+                title := <str>$title,
+                description := <str>$description,
+                birth_date := <str>$birthDate,
+                marital_status := <bool>$maritalStatus,
+                user_role := <str>$userRole
+            }";
+
+            await _client.ExecuteAsync(query, new Dictionary<string, object?>
+            {
+                {"email_toget", email },
+                { "firstName" , NewContact.FirstName },
+                { "lastName", NewContact.LastName },
+                { "email" , NewContact.Email },
+                { "title" , NewContact.Title },
+                { "description" , NewContact.Description },
+                { "birthDate" , NewContact.BirthDate },
+                { "maritalStatus" , NewContact.MaritalStatus },
+                { "userRole", NewContact.UserRole }
+            });
+
             return RedirectToPage("/Dataview");
         }
 
@@ -42,11 +58,16 @@ namespace ContactDatabaseEnhanced.Pages
         public async Task<IActionResult> OnPostSelect(string email)
         {
 
-            var result = await _client.QueryAsync<DBContact>($$"""
-                SELECT Contact {first_name, last_name, email, title, description, birth_date, marital_status}
-                FILTER Contact.email = <str>"{{email}}";
-                """);
-   
+            string query = "SELECT Contact {first_name, last_name, email, title, description, birth_date, marital_status, user_role} " +
+                                       "FILTER Contact.email = <str>$email;";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "email", email }
+            };
+            // Execute the EdgeDB query and retrieve the result
+            var result = await _client.QueryAsync<DBContact>(query, parameters);
+                
             DBContact foundContact = result.FirstOrDefault();
             var contact = new Contact
             {
@@ -56,7 +77,8 @@ namespace ContactDatabaseEnhanced.Pages
                 Title = foundContact.title,
                 Description = foundContact.description,
                 BirthDate = foundContact.birth_date,
-                MaritalStatus = foundContact.marital_status
+                MaritalStatus = foundContact.marital_status,
+                UserRole = foundContact.user_role
             };
 
             ContactToEdit = contact;

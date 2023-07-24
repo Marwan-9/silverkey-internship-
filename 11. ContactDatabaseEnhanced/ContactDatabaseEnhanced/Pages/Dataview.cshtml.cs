@@ -15,7 +15,7 @@ public class DataviewModel : PageModel
     public async Task<IActionResult> OnGet()
     {
         var contacts = await _client.QueryAsync<DBContact>(
-            "SELECT Contact {first_name, last_name, email, title, description, birth_date, marital_status};");
+            "SELECT Contact {first_name, last_name, email, title, description, birth_date, marital_status, user_name, password, user_role, salt};");
         foreach (var contact in contacts)
         {
             ContactsList.Add(
@@ -26,7 +26,11 @@ public class DataviewModel : PageModel
                     contact.title,
                     contact.description,
                     contact.birth_date,
-                    contact.marital_status
+                    contact.marital_status,
+                    contact.user_name,
+                    contact.password,
+                    contact.user_role,
+                    contact.salt
                 )
             );
         }
@@ -35,12 +39,16 @@ public class DataviewModel : PageModel
 
     public class DBContact
     {
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string email { get; set; }
+        public string first_name { get; set; } = "";
+        public string last_name { get; set; } = "";
+        public string email { get; set; } = "";
         public string title { get; set; }
-        public string description { get; set; }
-        public string birth_date { get; set; }
-        public bool marital_status { get; set; }
+        public string description { get; set; } = "";
+        public string birth_date { get; set; } = "";
+        public bool marital_status { get; set; } = false;
+        public string user_name { get; set; } = "";
+        public string password { get; set; } = "";
+        public string user_role { get; set; } = "";
+        public byte[] salt { get; set; } = new byte[32];
     }
 }

@@ -69,22 +69,22 @@
 
 <div class="container">
     <h1>Edit User Information</h1>
-        <form method="post" asp-page-handler="Update" asp-route-email="@Model.ContactToEdit.Email">
+        <form method="post" asp-page-handler="Update" asp-route-email="@Model.ContactToEdit.Email" required>
         <div class="form-group">
             <label for="username">First Name:</label>
-                <input type="text" id="username" name="NewContact.FirstName" value="@Model.ContactToEdit.FirstName">
+                <input type="text" id="username" name="NewContact.FirstName" value="@Model.ContactToEdit.FirstName" required>
         </div>
         <div class="form-group">
             <label for="username">Last Name:</label>
-            <input type="text" id="username" name="NewContact.LastName" value="@Model.ContactToEdit.LastName">
+                <input type="text" id="username" name="NewContact.LastName" value="@Model.ContactToEdit.LastName" required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-                <input type="text" id="email" name="NewContact.Email" value="@Model.ContactToEdit.Email">
+                <input type="text" id="email" name="NewContact.Email" value="@Model.ContactToEdit.Email" required>
         </div>
         <div class="form-group">
             <label for="title">Title:</label>
-                <select id="title" name="NewContact.Title" value="@Model.ContactToEdit.Title">
+                <select id="title" name="NewContact.Title" value="@Model.ContactToEdit.Title" required>
                 <option value="Mr.">Mr.</option>
                 <option value="Ms.">Ms.</option>
                 <option value="Mrs.">Mrs.</option>
@@ -99,14 +99,21 @@
 
         <div class="form-group">
             <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="NewContact.BirthDate" value="@Model.ContactToEdit.BirthDate">
+                <input type="date" id="dob" name="NewContact.BirthDate" value="@Model.ContactToEdit.BirthDate" required>
         </div>
 
         <label>Marriage Status:</label>
         <div class="form-group">
-                <select name="NewContact.MaritalStatus" value="@Model.ContactToEdit.MaritalStatus">
+                <select name="NewContact.MaritalStatus" value="@Model.ContactToEdit.MaritalStatus" required>
                 <option value="false">No</option>
                 <option value="true">Yes</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+                <select name="NewContact.UserRole" value="@Model.ContactToEdit.UserRole" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
             </select>
         </div>
 
