@@ -1,5 +1,5 @@
 # Silverkey Internship
-Showcasing my .NET Core skills through a collection of assignments completed during my software internship at Silverkey.
+Showcasing my .NET Core skills through a collection of assignments completed during my software internship at Silverkey in Cairo.
 
 ### Assignments 
 1.  Setup development environment. 
